@@ -124,7 +124,8 @@ if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
 
-colorscheme base16-default-dark
+"colorscheme base16-default-dark
+colorscheme zenburn
 
 map <Leader>1 :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
