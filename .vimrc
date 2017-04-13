@@ -31,10 +31,10 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'chriskempson/base16-vim'
-Plugin 'wincent/command-t'
 Plugin 'valloric/youcompleteme'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'townk/vim-autoclose'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -134,3 +134,7 @@ let g:ycm_rust_src_path = '~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/r
 
 map <Leader>\ :SyntasticCheck<CR>
 let g:syntastic_html_checkers = ["htmlhint"]
+
+set directory=~/tmp,./tmp,.
+set backupdir=~/tmp,./tmp,.
+
