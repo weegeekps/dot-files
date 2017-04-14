@@ -137,4 +137,8 @@ let g:syntastic_html_checkers = ["htmlhint"]
 
 set directory=~/tmp,./tmp,.
 set backupdir=~/tmp,./tmp,.
+set undodir=~/tmp,./tmp,.
+
+set exrc
+set secure
 
