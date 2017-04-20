@@ -33,8 +33,8 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'chriskempson/base16-vim'
 Plugin 'valloric/youcompleteme'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'townk/vim-autoclose'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 filetype plugin indent on
