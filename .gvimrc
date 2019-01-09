@@ -9,4 +9,5 @@ set guioptions-=L
 set guioptions-=r
 
 colorscheme base16-default-dark
+let g:airline_theme='base16'
 

@@ -35,6 +35,11 @@ Plugin 'valloric/youcompleteme'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'tpope/vim-surround'
+Plugin 'udalov/kotlin-vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 filetype plugin indent on
@@ -124,9 +129,12 @@ if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
 
+"let base16colorspace=256
 "colorscheme base16-default-dark
 colorscheme zenburn
+let g:airline_theme='zenburn'
 
+let g:rustfmt_autosave = 1
 map <Leader>1 :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 
@@ -135,6 +143,7 @@ let g:ycm_rust_src_path = '~/.rustup/toolchains/stable-x86_64-apple-darwin/lib/r
 map <Leader>\ :SyntasticCheck<CR>
 let g:syntastic_html_checkers = ["htmlhint"]
 
+map <Leader>n :bn<CR>
 set directory=~/tmp,./tmp,.
 set backupdir=~/tmp,./tmp,.
 set undodir=~/tmp,./tmp,.
