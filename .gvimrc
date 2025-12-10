@@ -1,7 +1,8 @@
-set guifont=Source\ Code\ Pro:h14
+set guifont=Fira\ Code\ 10
 set antialias
 set encoding=utf-8
 set lines=40 columns=120
+set guiligatures=!\"#$%&()*+-./:<=>?@[]^_{\|~
 
 syntax enable
 
