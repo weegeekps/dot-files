@@ -28,7 +28,6 @@ gaps inner 10px
 gaps outer 5px
 
 # Multihead
-
 workspace 1 output DP-3
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
@@ -271,10 +270,13 @@ exec --no-startup-id /home/amorris/.local/share/JetBrains/Toolbox/bin/jetbrains-
 exec picom
 
 # xrandr
-
 exec --no-startup-id xrandr --output DP-3 --mode 3840x2160 --rate 143.96 --primary
 exec --no-startup-id xrandr --output DP-4 --mode 2560x1440 --rate 180.00 --left-of DP-3
 
 # Wallpaper
 exec --no-startup-id "sh -c 'sleep 1'; feh --bg-scale /home/amorris/tmp/satpaper/satpaper_latest.png"
+
+# Autostart User .desktop files
+# Useful for stuff like Jetbrains Toolbox
+exec --no-startup-id "dex -a -s ~/.config/autostart"
 

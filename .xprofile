@@ -1,0 +1,8 @@
+# fcitx5 configuration
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+SDL_IM_MODULE=fcitx
+
+# Pass XDG_CURRENT_DESKTOP to systemd for user units
+systemctl --user import-environment XDG_CURRENT_DESKTOP &
+
