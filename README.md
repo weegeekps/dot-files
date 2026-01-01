@@ -22,7 +22,7 @@ My i3 environment in EndeavourOS uses the xfce4 bar instead of another bar. Assu
 From `pacman`:
 
 ```zsh
-pacman -Sy alacritty blueman dex dunst fcitx5-im feh nerd-fonts networkmanager network-manager-applet libpulse picom polkit polkit-gnome rofi thunar tmux ttf-fira-code unicode-emoji xfce4 xfce4-pulseaudio-plugin xfce4-screenshooter xss-lock
+pacman -Sy alacritty blueman dex dunst fcitx5-im feh keychain nerd-fonts networkmanager network-manager-applet libpulse picom polkit polkit-gnome rofi seahorse thunar tmux ttf-fira-code unicode-emoji xfce4 xfce4-pulseaudio-plugin xfce4-screenshooter xss-lock
 ```
 
 From AUR:
@@ -39,6 +39,12 @@ Configure:
    - Don't forget to configure firewall!
  - Polkit: https://wiki.archlinux.org/title/Polkit
  - Betterlockscreen: https://github.com/betterlockscreen/betterlockscreen
+
+Add to `.profile`:
+
+```sh
+eval $(keychain --eval --quiet id_ed25519)
+```
 
 Add to `.xprofile`:
 
