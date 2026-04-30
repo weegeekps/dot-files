@@ -14,6 +14,12 @@ opt.directory = { vim.fn.expand("~/tmp"), "./tmp", "." }
 opt.backupdir = { vim.fn.expand("~/tmp"), "./tmp", "." }
 opt.undodir = { vim.fn.expand("~/tmp"), "./tmp", "." }
 
+-- Tabs
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
 -- Colorscheme
 -- vim.g.base16colorspace = 256
 vim.opt.termguicolors = true
@@ -22,3 +28,12 @@ vim.cmd.colorscheme("base16-tomorrow-night")
 -- Neovide Font
 vim.opt.guifont = "Fira Code:h12"
 
+-- glTF Helpers
+vim.filetype.add({
+    extension = {
+        gltf = "json",
+    },
+})
+
+-- Session
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
