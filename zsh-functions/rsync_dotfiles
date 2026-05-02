@@ -1,8 +1,7 @@
 #!/usr/bin/zsh
 
 _print_dotfiles_help() {
-    cat << HEREDOC
-** rsync_dotfiles Function Help **
+   print "** rsync_dotfiles Function Help **
 
 rsync_dotfiles is the entrypoint to synchronize configs from the
 dot-files directory to the home directory.
@@ -25,8 +24,7 @@ Possible <config_opt>:
 You can only pass a single config_opt to prevent you from being a
 dumbass who screws up and overwrites stuff you don't want to.
 
-Don't forget to do a gitdiff and then git commit and push.
-HEREDOC
+Don't forget to do a gitdiff and then git commit and push."
 }
 
 _put_term() {
@@ -71,8 +69,8 @@ rsync_dotfiles() {
     # Check we have arguments.
     if (( $# < 2 )); then
         print "Not enough arguments." >&2
-        _print_dotfiles_help()
-        exit 1
+        _print_dotfiles_help
+        return 1
     fi
 
     local valid_dirs=(g get p put)
@@ -84,15 +82,15 @@ rsync_dotfiles() {
     # Check our direction is valid
     if ! [[ ${valid_dirs[(ie)$direction]} -le ${#valid_dirs} ]]; then
         print "Invalid direction." >&2
-        _print_dotfiles_help()
-        exit 1
+        _print_dotfiles_help
+        return 1
     fi
 
     # Check our config_opt is valid
     if ! [[ ${valid_opts[(ie)$config_opt]} -le ${#valid_opts} ]]; then
         print "Invalid option." >&2
-        _print_dotfiles_help()
-        exit 1
+        _print_dotfiles_help
+        return 1
     fi
 
     if [[ "$config_opt" == "nvim" ]]; then
@@ -103,3 +101,5 @@ rsync_dotfiles() {
         fi
     fi
 }
+
+rsync_dotfiles "$@"

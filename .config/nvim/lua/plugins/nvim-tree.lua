@@ -1,7 +1,7 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	lazy = false,
-	enable = false, -- Disabled to try out neo-tree
+	enabled = false, -- Disabled to try out neo-tree
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("nvim-tree").setup({
