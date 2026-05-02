@@ -11,4 +11,4 @@ if ! [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 # Run rsync from $src to $dst
-rsync -avPR --delete $src $dst
+rsync -avPR --delete ${=src} $dst
