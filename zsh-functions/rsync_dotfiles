@@ -111,6 +111,30 @@ rsync_dotfiles() {
         return 1
     fi
 
+    if [[ "$config_opt" == "term" ]]; then
+        if [[ "$direction" == "g" || "$direction" == "get" ]]; then
+            _get_term
+        elif [[ "$direction" == "p" || "$direction" == "put" ]]; then
+            _put_term
+        fi
+    fi
+
+    if [[ "$config_opt" == "i3" ]]; then
+        if [[ "$direction" == "g" || "$direction" == "get" ]]; then
+            _get_i3
+        elif [[ "$direction" == "p" || "$direction" == "put" ]]; then
+            _put_i3
+        fi
+    fi
+
+    if [[ "$config_opt" == "vim" ]]; then
+        if [[ "$direction" == "g" || "$direction" == "get" ]]; then
+            _get_vim
+        elif [[ "$direction" == "p" || "$direction" == "put" ]]; then
+            _put_vim
+        fi
+    fi
+
     if [[ "$config_opt" == "nvim" ]]; then
         if [[ "$direction" == "g" || "$direction" == "get" ]]; then
             _get_nvim
