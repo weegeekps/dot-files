@@ -54,12 +54,22 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="electron"/>
+        <value type="string" value="blueman"/>
         <value type="string" value="fcitx5 tray window"/>
         <value type="string" value="requesting an ethernet network address for “wired connection 1”…"/>
         <value type="string" value="ethernet network connection “wired connection 1” active"/>
         <value type="string" value="pamac-tray"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="Claude_status_icon_1"/>
+        <value type="string" value="indicator-solaar"/>
+        <value type="string" value="flameshot"/>
+        <value type="string" value="steam"/>
+        <value type="string" value="zoom"/>
+        <value type="string" value="OneDriveGUI"/>
+        <value type="string" value="chrome_status_icon_1"/>
+        <value type="string" value="blueman"/>
         <value type="string" value="toolbox"/>
         <value type="string" value="Fcitx"/>
       </property>

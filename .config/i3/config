@@ -24,8 +24,10 @@ font pango: Noto Sans Regular 9
 # gaps
 smart_gaps on
 for_window [class="^.*"] border pixel 1
+for_window [floating] border normal
 gaps inner 10px
 gaps outer 5px
+
 
 # Multihead
 workspace 1 output DP-3
@@ -36,6 +38,9 @@ workspace 1 output DP-3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Comment this line and uncomment out the one above to use i3lock instead of betterlockscreen
+# This requires i3lock-color from AUR
 exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l dimblur
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
@@ -79,13 +84,6 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 # bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 bindsym $mod+Shift+d exec "rofi -modi drun,run -show drun"
-bindsym $mod+d exec --no-startup-id xfce4-popup-whiskermenu
-
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -135,7 +133,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -178,8 +176,11 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
 
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec rofi -show power-menu -modi "power-menu:rofi-power-menu --choices=lockscreen/logout/suspend/reboot/shutdown"
+
+# legacy exit i3 stuff. for emergency.
 mode "Exit" {
 	bindsym l exec i3-msg exit
 	bindsym r exec systemctl -i reboot
@@ -188,7 +189,7 @@ mode "Exit" {
 	bindsym Escape mode "default"; exec pkill -15 nagbar
 }
 
-bindsym $mod+Shift+e mode "Exit"; exec i3-nagbar \
+bindsym $mod+Alt+e mode "Exit"; exec i3-nagbar \
 	-p \
 	-t warning \
 	-m 'SESSION EXIT OPTIONS' \
@@ -224,33 +225,77 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # color variables for bar and windows
-set $border-color-focused              #5294E2
-set $border-color-focused_inactive     #364773
-set $border-color-unfocused            #1F2A38
-set $border-color-urgent               #CC575D
-set $border-color-placeholder          #00FF00
-set $border-color-background           #282f39
-set $background-color-focused          #5294E2
-set $background-color-focused_inactive #364773
-set $background-color-unfocused        #1F2A38
-set $background-color-urgent           #CC575D
-set $background-color-placeholder      #00FF00 
-set $background-color-background       #282f39
-set $text-color-focused                #FFFFFF
-set $text-color-focused_inactive       #FFFFFF
-set $text-color-unfocused              #282f39
-set $text-color-urgent                 #FFFFFF
-set $text-color-placeholder            #FFFFFF
-set $text-color-background             #FFFFFF
-set $indicator-color		       #39669e
+# set $border-color-focused              #5294E2
+# set $border-color-focused_inactive     #364773
+# set $border-color-unfocused            #1F2A38
+# set $border-color-urgent               #CC575D
+# set $border-color-placeholder          #00FF00
+# set $border-color-background           #282f39
+# set $background-color-focused          #5294E2
+# set $background-color-focused_inactive #364773
+# set $background-color-unfocused        #1F2A38
+# set $background-color-urgent           #CC575D
+# set $background-color-placeholder      #00FF00 
+# set $background-color-background       #282f39
+# set $text-color-focused                #FFFFFF
+# set $text-color-focused_inactive       #FFFFFF
+# set $text-color-unfocused              #282f39
+# set $text-color-urgent                 #FFFFFF
+# set $text-color-placeholder            #FFFFFF
+# set $text-color-background             #FFFFFF
+# set $indicator-color		       #39669e
 
 #                       border                         background                         text                         indicator
-client.focused          $border-color-focused          $background-color-focused          $text-color-focused          $indicator-color
-client.focused_inactive $border-color-focused_inactive $background-color-focused_inactive $text-color-focused_inactive $indicator-color
-client.unfocused        $border-color-unfocused        $background-color-unfocused        $text-color-unfocused        $indicator-color
-client.urgent           $border-color-urgent           $background-color-urgent           $text-color-urgent           $indicator-color
-client.placeholder      $border-color-placeholder      $background-color-placeholder      $text-color-placeholder      $indicator-color
-client.background       $border-color-background       $background-color-background       $text-color-background       $indicator-color
+# client.focused          $border-color-focused          $background-color-focused          $text-color-focused          $indicator-color
+# client.focused_inactive $border-color-focused_inactive $background-color-focused_inactive $text-color-focused_inactive $indicator-color
+# client.unfocused        $border-color-unfocused        $background-color-unfocused        $text-color-unfocused        $indicator-color
+# client.urgent           $border-color-urgent           $background-color-urgent           $text-color-urgent           $indicator-color
+# client.placeholder      $border-color-placeholder      $background-color-placeholder      $text-color-placeholder      $indicator-color
+# client.background       $border-color-background       $background-color-background       $text-color-background       $indicator-color
+
+# Qogir-Round-Dark (Blue Accent) colors as variables
+# Border colors
+set $border-color-focused               #4A90E2
+set $border-color-focused_inactive      #3B5A7A
+set $border-color-unfocused             #2C3E50
+set $border-color-urgent                #E53935
+set $border-color-placeholder           #3B5A7A
+
+# Background colors
+set $background-color-focused           #4A90E2
+set $background-color-focused_inactive  #3B5A7A
+set $background-color-unfocused         #253544
+set $background-color-urgent            #1F2A36
+set $background-color-placeholder       #1F2A36
+
+# Text colors
+set $text-color-focused                 #FFFFFF
+set $text-color-focused_inactive        #FFFFFF
+set $text-color-unfocused               #FFFFFF
+set $text-color-urgent                  #FFFFFF
+set $text-color-placeholder             #FFFFFF
+
+# Indicator colors
+set $indicator-color-focused            #4A90E2
+set $indicator-color-focused_inactive   #3B5A7A
+set $indicator-color-unfocused          #2C3E50
+set $indicator-color-urgent             #E53935
+set $indicator-color-placeholder        #3B5A7A
+
+# Child border colors
+set $child-border-color-focused         #4A90E2
+set $child-border-color-focused_inactive #3B5A7A
+set $child-border-color-unfocused       #2C3E50
+set $child-border-color-urgent          #E53935
+set $child-border-color-placeholder     #3B5A7A
+
+#                           border                           background                           text                           indicator                           child_border
+client.focused              $border-color-focused            $background-color-focused            $text-color-focused            $indicator-color-focused            $child-border-color-focused
+client.focused_inactive     $border-color-focused_inactive   $background-color-focused_inactive   $text-color-focused_inactive   $indicator-color-focused_inactive   $child-border-color-focused_inactive
+client.unfocused            $border-color-unfocused          $background-color-unfocused          $text-color-unfocused          $indicator-color-unfocused          $child-border-color-unfocused
+client.urgent               $border-color-urgent             $background-color-urgent             $text-color-urgent             $indicator-color-urgent             $child-border-color-urgent
+client.placeholder          $border-color-placeholder        $background-color-placeholder        $text-color-placeholder        $indicator-color-placeholder        $child-border-color-placeholder
+client.background           $background-color-focused
 
 # xfce-settings daemon
 exec --no-startup-id xfsettingsd --daemon
@@ -265,7 +310,6 @@ for_window [ class="Xfce4-panel" instance="xfce4-panel" ] floating enable
 exec --no-startup-id dunst & # notifications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id pamac-tray
-exec --no-startup-id /home/amorris/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox --minimize &
 
 # picom
 exec picom
@@ -275,9 +319,16 @@ exec --no-startup-id xrandr --output DP-3 --mode 3840x2160 --rate 143.96 --prima
 exec --no-startup-id xrandr --output DP-4 --mode 2560x1440 --rate 180.00 --left-of DP-3
 
 # Wallpaper
-exec --no-startup-id "sh -c 'sleep 1'; feh --bg-scale /home/amorris/tmp/satpaper/satpaper_latest.png"
+exec --no-startup-id "sh -c 'sleep 1'; feh --bg-scale ~/tmp/satpaper/satpaper_latest.png"
+
+# Update Betterlockscreen cache
+exec --no-startup-id "sh -c 'sleep 5'; betterlockscreen -u ~/tmp/satpaper/satpaper_latest.png"
 
 # Autostart User .desktop files
 # Useful for stuff like Jetbrains Toolbox
-exec --no-startup-id "dex -a -s ~/.config/autostart"
+exec --no-startup-id "sh -c 'sleep 5'; dex -a -s ~/.config/autostart"
+
+# Specific window rules
+assign [class="Discord"] $ws2
+for_window [class="jetbrains-toolbox"] border normal
 
