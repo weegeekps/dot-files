@@ -22,7 +22,7 @@ Possible <config_opt>:
  - nvim = Neovim related configs
 
 You can only pass a single config_opt to prevent you from being a
-dumbass who screws up and overwrites stuff you don't want to.
+dumb idiot who screws up and overwrites stuff you don't want to.
 
 Don't forget to do a gitdiff and then git commit and push."
 }
