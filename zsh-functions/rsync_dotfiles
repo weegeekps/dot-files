@@ -28,38 +28,56 @@ Don't forget to do a gitdiff and then git commit and push."
 }
 
 _put_term() {
-    # TODO
+    local src="$HOME/./.alacritty.toml $HOME/./.tmux.conf $HOME/./.tmux $HOME/./.oh-my-zsh/themes/amorris.zsh-theme"
+    local dst="$HOME/dot-files/"
+
+    prompt_rsync $src $dst
 }
 
 _get_term() {
-    # TODO
+    local src="$HOME/./dot-files/.alacritty.toml $HOME/./dot-files/.tmux.conf $HOME/./dot-files/.tmux $HOME/./dot-files/.oh-my-zsh/themes/amorris.zsh-theme"
+    local dst="$HOME/"
+
+    prompt_rsync $src $dst
 }
 
 _put_i3() {
-    # TODO
+    local src="$HOME/./.config/i3/config $HOME/./.config/xfce4/xfconf/xfce-perchannel-xml"
+    local dst="$HOME/dot-files/"
+
+    prompt_rsync $src $dst
 }
 
 _get_i3() {
-    # TODO
+    local dst="$HOME/./dot-files/.config/i3/config $HOME/./dot-files/.config/xfce4/xfconf/xfce-perchannel-xml"
+    local src="$HOME/"
+
+    prompt_rsync $src $dst
 }
 
 _put_vim() {
-    # TODO
+    local src="$HOME/./.vimrc $HOME/./.gvimrc"
+    local dst="$HOME/dot-files/"
+
+    prompt_rsync $src $dst
 }
 
 _get_vim() {
-    # TODO
+    local src="$HOME/./dot-files/.vimrc $HOME/./dot-files/.gvimrc"
+    local dst="$HOME/"
+
+    prompt_rsync $src $dst
 }
 
 _put_nvim() {
-    local src="$HOME/.config/nvim/"
+    local src="$HOME/./.config/nvim/"
     local dst="$HOME/dot-files/.config/nvim/"
 
     prompt_rsync $src $dst
 }
 
 _get_nvim() {
-    local src="$HOME/dot-files/.config/nvim/"
+    local src="$HOME/./dot-files/.config/nvim/"
     local dst="$HOME/.config/nvim/"
 
     prompt_rsync $src $dst
