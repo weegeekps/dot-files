@@ -37,3 +37,8 @@ vim.filetype.add({
 
 -- Session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- Scaling for Windows
+if vim.g.neovide and vim.fn.has("win64") then
+    vim.g.neovide_scale_factor = 0.8
+end
