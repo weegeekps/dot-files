@@ -9,6 +9,7 @@ The documentation for my dot-files is split into several files.
 ## Documentation
 
  - [EndeavourOS (and i3)](./docs/EndeavourOS.md)
+ - [Windows](./docs/windows.md)
  - [Neovim](./docs/neovim.md)
  - [Terminal](./docs/terminal.md)
 
