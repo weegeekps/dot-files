@@ -11,9 +11,6 @@ return {
 	{ "leafgarland/typescript-vim", ft = "typescript" },
 	{ "udalov/kotlin-vim", ft = "kotlin" },
 
-	-- Git integration
-	{ "tpope/vim-fugitive" },
-
 	-- Editing enhancements
 	{ "tpope/vim-surround" },
 	{
