@@ -11,6 +11,7 @@ return {
         { "<Leader>b", ":Telescope buffers<CR>" },
         { "<Leader>/", ":Telescope session_lens<CR>" },
         { "<Leader>i", ":Telescope nerdy<CR>" },
+        { "<Leader>h", ":Telescope keymaps<CR>" },
     },
     config = function()
         require("telescope").setup()

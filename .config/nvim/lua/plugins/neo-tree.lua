@@ -20,7 +20,7 @@ return {
 				filesystem = {
 					filtered_items = {
 						visible = false,
-						hide_dotfiles = false, -- you weren't hiding dotfiles in nvim-tree
+						hide_dotfiles = false,
 						hide_gitignored = true,
 						hide_by_name = { ".git" }, -- mirrors your custom = { "^\\.git$" }
 						never_show = { ".git" },
@@ -63,20 +63,17 @@ return {
 				},
 
 				-- Sources: filesystem always present; buffers source added for Neovide
-				sources = is_neovide and { "filesystem", "buffers", "git_status" } or { "filesystem", "git_status" },
+				sources = { "filesystem", "buffers", "git_status" },
 
 				-- Source selector renders the tab strip at the top of the panel
 				-- Only show it in Neovide where it doubles as a tab system
 				source_selector = {
-					winbar = is_neovide, -- renders in the winbar of the neo-tree window
+					winbar = true,
 					statusline = false,
 					show_scrolled_off_parent_node = false,
-					sources = is_neovide and {
+					sources = {
 						{ source = "filesystem", display_name = " 󰉓 Files " },
 						{ source = "buffers", display_name = " 󰈚 Bufs  " },
-						{ source = "git_status", display_name = " 󰊢 Git   " },
-					} or {
-						{ source = "filesystem", display_name = " 󰉓 Files " },
 						{ source = "git_status", display_name = " 󰊢 Git   " },
 					},
 				},
