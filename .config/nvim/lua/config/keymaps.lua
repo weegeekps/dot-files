@@ -4,8 +4,15 @@ local keymap = vim.keymap.set
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 
+-- Quit
+keymap("n", "<Leader>q", ":waq", { desc = "Save All and Quit", noremap = true, silent = true })
+
 -- Save
-keymap("n", "<Leader>s", ":wa<CR>", { desc = "Save All Files", noremap = true })
+keymap("n", "<Leader>s", ":wa<CR>", { desc = "Save All Files", noremap = true, silent = true })
+
+-- Cursor navigation
+keymap("n", "<Home>", "^", { noremap = true, silent = true })
+keymap("i", "<Home>", "<C-o>^", { noremap = true, silent = true })
 
 -- Quit All
 keymap("n", "<Leader>qq", ":qa<CR>", { desc = "Quit All without Saving", noremap = true, silent = true })

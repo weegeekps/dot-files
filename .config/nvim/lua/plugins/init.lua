@@ -13,12 +13,5 @@ return {
 
     -- Editing enhancements
     { "tpope/vim-surround" },
-    {
-        "numToStr/Comment.nvim",
-        opts = {},
-        keys = {
-            { "gcc", mode = "n" },
-            { "gc", mode = "v" },
-        },
-    },
+    { "nvim-mini/mini.comment" },
 }
