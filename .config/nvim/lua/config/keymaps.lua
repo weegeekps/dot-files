@@ -42,3 +42,16 @@ keymap("i", "<C-U>", "<C-G>u<C-U>", { desc = "Surround", noremap = true })
 keymap("n", "<Leader>f", function()
     require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Force rustfmt", noremap = true, silent = true })
+
+-- Neovide Zoom
+if vim.g.neovide then
+    keymap("n", "<C-=>", function()
+        vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1
+    end, { desc = "Zoom In", noremap = true, silent = true })
+
+    keymap("n", "<C-->", function()
+        -- On Windows I use a 0.8 scaling factor.
+        -- See options.lua
+        vim.g.neovide_scale_factor = vim.fn.has("win64") and 0.8 or 1.0
+    end, { desc = "Reset Zoom", noremap = true, silent = true })
+end
