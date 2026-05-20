@@ -7,6 +7,12 @@ vim.g.maplocalleader = "\\"
 -- Save
 keymap("n", "<Leader>s", ":wa<CR>", { desc = "Save All Files", noremap = true })
 
+-- Quit All
+keymap("n", "<Leader>qq", ":qa<CR>", { desc = "Quit All without Saving", noremap = true, silent = true })
+
+-- Quit All & Save
+keymap("n", "<Leader>qs", ":wqa<CR>", { desc = "Quit All and Save", noremap = true, silent = true })
+
 -- nvim-tree
 -- keymap("n", "<Leader>1", ":NvimTreeToggle<CR>", { desc = "Toggle Tree", noremap = true, silent = true })
 -- keymap("n", "<Leader>2", ":NvimTreeFindFile<CR>", { desc = "Focus Tree", noremap = true, silent = true })
@@ -43,12 +49,19 @@ keymap("n", "<Leader>f", function()
     require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Force rustfmt", noremap = true, silent = true })
 
--- Neovide Zoom
+-- Neovide Specific
 if vim.g.neovide then
+    -- System Copy, Cut, Paste
+    keymap("n", "<Leader>x", '"+d', { desc = "Cut to system register", noremap = true })
+    keymap("n", "<Leader>c", '"+y', { desc = "Copy to system register", noremap = true })
+    keymap("n", "<Leader>p", '"+p', { desc = "Paste from system register", noreamp = true })
+
+    -- Zoom In
     keymap("n", "<C-=>", function()
         vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1
     end, { desc = "Zoom In", noremap = true, silent = true })
 
+    -- Zoom Reset
     keymap("n", "<C-->", function()
         -- On Windows I use a 0.8 scaling factor.
         -- See options.lua

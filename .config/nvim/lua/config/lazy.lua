@@ -21,5 +21,8 @@ require("lazy").setup({
         { import = "plugins" },
     },
     install = { colorscheme = { "base16-tomorrow-night" } },
-    checker = { enabled = true },
+    checker = {
+        enabled = true,
+        frequency = 43200, -- Check for updates every 12 hours. Effectively once a day.
+    },
 })
