@@ -7,7 +7,7 @@ return {
     ---@type AutoSession.Config
     config = function()
         require("auto-session").setup({
-            allowed_dirs = { "~/Projects/**" },
+            allowed_dirs = { "~/Projects/**", "~/dot-files/**" },
             auto_restore_last_session = false,
             bypass_save_filetypes = { "neo-tree" },
             session_lens = {

@@ -3,11 +3,12 @@ return {
     version = "0.2.*",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "BurntSushi/ripgrep", -- optional but recommended
+        "rmagatti/auto-session",
+        "BurntSushi/ripgrep",
     },
     keys = {
-        { "<C-p>", ":Telescope find_files<CR>" },
-        { "<Leader>g", ":Telescope live_grep<CR>" },
+        { "<C-p>", ":Telescope live_grep<CR>" },
+        { "<Leader>ff", ":Telescope find_files<CR>" },
         { "<Leader>b", ":Telescope buffers<CR>" },
         { "<Leader>/", ":Telescope session_lens<CR>" },
         { "<Leader>i", ":Telescope nerdy<CR>" },
