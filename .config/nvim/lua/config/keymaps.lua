@@ -54,7 +54,7 @@ if vim.g.neovide then
     -- System Copy, Cut, Paste
     keymap("n", "<Leader>x", '"+d', { desc = "Cut to system register", noremap = true })
     keymap("n", "<Leader>c", '"+y', { desc = "Copy to system register", noremap = true })
-    keymap("n", "<Leader>p", '"+p', { desc = "Paste from system register", noreamp = true })
+    keymap("n", "<Leader>p", '"+p', { desc = "Paste from system register", noremap = true })
 
     -- Zoom In
     keymap("n", "<C-=>", function()
