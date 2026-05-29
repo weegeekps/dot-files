@@ -7,7 +7,6 @@ return {
         opts = {
             paragraph = {
                 enabled = true,
-                left_margin = 5,
             },
             heading = { border = true },
             indent = {
