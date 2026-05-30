@@ -14,6 +14,12 @@ opt.directory = { vim.fn.expand("~/tmp"), "./tmp", "." }
 opt.backupdir = { vim.fn.expand("~/tmp"), "./tmp", "." }
 opt.undodir = { vim.fn.expand("~/tmp"), "./tmp", "." }
 
+-- Indentation Settings
+-- NOTE: Soft/Hard wrapping and whether or not to wrap is handled by
+--   the wrapping.nvim plugin.
+vim.opt.breakindent = true
+vim.opt.linebreak = true
+
 -- Tabs
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
