@@ -4,12 +4,6 @@ local keymap = vim.keymap.set
 vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 
--- Quit
-keymap("n", "<Leader>q", ":waq", { desc = "Save All and Quit", noremap = true, silent = true })
-
--- Save
-keymap("n", "<Leader>s", ":wa<CR>", { desc = "Save All Files", noremap = true, silent = true })
-
 -- Cursor navigation
 keymap("n", "<Home>", "^", { noremap = true, silent = true })
 keymap("i", "<Home>", "<C-o>^", { noremap = true, silent = true })
@@ -46,13 +40,14 @@ keymap("n", "<Leader>\\", ":lua require('lint').try_lint()<CR>", { desc = "Do Li
 -- Buffer navigation
 keymap("n", "<Leader>n", ":bn<CR>", { desc = "Next Buffer", noremap = true, silent = true })
 keymap("n", "<Leader>p", ":bp<CR>", { desc = "Previous Buffer", noremap = true, silent = true })
+keymap("n", "<C-Tab>", ":b#<CR>", { desc = "Last Buffer", noremap = true, silent = true })
 
 -- Surround
 -- Insert mode Ctrl-U
 keymap("i", "<C-U>", "<C-G>u<C-U>", { desc = "Surround", noremap = true })
 
 -- Format shortcut for Rust (rustfmt)
-keymap("n", "<Leader>f", function()
+keymap("n", "ff", function()
     require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Force rustfmt", noremap = true, silent = true })
 

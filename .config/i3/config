@@ -330,5 +330,7 @@ exec --no-startup-id "sh -c 'sleep 5'; dex -a -s ~/.config/autostart"
 
 # Specific window rules
 assign [class="Discord"] $ws2
-for_window [class="jetbrains-toolbox"] border normal
-
+for_window [class="jetbrains-toolbox"] floating enable, move down 200 px
+for_window [class="zoom"] floating enable
+for_window [class="zoom" title="Zoom Workplace - (?:Licensed|Free) account"] floating disable
+for_window [class="zoom" title="Meeting"] floating disable

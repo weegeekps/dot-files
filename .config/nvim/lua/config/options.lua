@@ -44,6 +44,12 @@ vim.filetype.add({
 -- Session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+-- Scaling on majorian
+local hostname = vim.uv.os_gethostname()
+if vim.g.neovide and hostname == "majorian" then
+    vim.g.neovide_scale_factor = 1.4
+end
+
 -- Scaling for Windows
 if vim.g.neovide and vim.fn.has("win64") then
     vim.g.neovide_scale_factor = 0.8

@@ -2,6 +2,7 @@
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
 		lazy = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -12,15 +13,17 @@ return {
 			local is_neovide = vim.g.neovide ~= nil
 
 			require("neo-tree").setup({
+				-- Close other explorers if open (safety net during transition)
+				close_if_last_window = false,
+
 				-- Match your nvim-tree git filter behavior
 				filesystem = {
 					filtered_items = {
 						visible = false,
 						hide_dotfiles = false,
 						hide_gitignored = true,
-                        hide_by_name = { ".git" },
+						hide_by_name = { ".git" }, -- mirrors your custom = { "^\\.git$" }
 						never_show = { ".git" },
-                        always_show_by_pattern = { ".gemini*", ".github*", ".claude*", "_my_instructions*" },
 					},
 					follow_current_file = {
 						enabled = true, -- mirrors update_focused_file.enable
