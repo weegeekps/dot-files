@@ -315,8 +315,7 @@ exec --no-startup-id pamac-tray
 exec picom
 
 # xrandr
-exec --no-startup-id xrandr --output DP-3 --mode 3840x2160 --rate 143.96 --primary
-exec --no-startup-id xrandr --output DP-4 --mode 2560x1440 --rate 180.00 --left-of DP-3
+# NOTE: Moved permanently. See [Monitor Configuration](/docs/Endeavour_OS.md#monitor-configuration.
 
 # Wallpaper
 exec --no-startup-id "sh -c 'sleep 1'; feh --bg-scale ~/tmp/satpaper/satpaper_latest.png"

@@ -60,3 +60,31 @@ For satpaper, you need to copy over the systemd user unit and `scripts/update_wa
 
 Do all of this **before** you copy over `.config/i3/config` and `.config/xfce4/xfconf/xfce-perchannel-xml/*` from `dot-files`. These should be the last things you copy.
 
+## Monitor Configuration
+
+
+Chances are that `xrandr` and `lightdm` have the monitors messed up, with either the wrong primary or them in the wrong order. The best approach for handling `xrandr` configuration is to create a script in `/usr/share` that can be used by `lightdm` or `~/.xprofile`.
+
+> [!TIP]
+> If this is a laptop or something else where you need more dynamic setup, check out [autorandr](https://github.com/phillipberndt/autorandr).
+
+First, create the script `/usr/share/monitor_setup.sh`. As an example, the one used for my primary desktop:
+
+```sh
+#!/bin/sh
+
+PRIMARY_OUTPUT="DisplayPort-0"
+SECONDARY_OUTPUT="DisplayPort-3"
+
+xrandr --output $PRIMARY_OUTPUT --mode 3840x2160 --rate 143.96 --primary
+xrandr --output $SECONDARY_OUTPUT --mode 2560x1440 --rate 180.00 --left-of $PRIMARY_OUTPUT
+```
+
+To get `lightdm` using this script, add a configuration file at the path `/etc/lightdm/lightdm.conf.d/20-display-setup.conf`:
+
+```conf
+[Seat:*]
+display-setup-script=/usr/share/monitor_setup.sh
+```
+
+At this point, it should "just work" regardless of display server, compositor or window manager. If it isn't, source the script in `~/.xprofile` or better yet, figure out why it's broken.
