@@ -14,6 +14,9 @@ keymap("n", "<Leader>qq", ":qa<CR>", { desc = "Quit All without Saving", noremap
 -- Quit All & Save
 keymap("n", "<Leader>qs", ":wqa<CR>", { desc = "Quit All and Save", noremap = true, silent = true })
 
+-- Save All
+keymap("n", "<Leader>s", ":wa<CR>", { desc = "Save All", noremap = true, silent = true })
+
 -- nvim-tree
 -- keymap("n", "<Leader>1", ":NvimTreeToggle<CR>", { desc = "Toggle Tree", noremap = true, silent = true })
 -- keymap("n", "<Leader>2", ":NvimTreeFindFile<CR>", { desc = "Focus Tree", noremap = true, silent = true })

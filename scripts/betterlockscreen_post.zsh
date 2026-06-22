@@ -9,7 +9,7 @@ WP_PATH="$HOME/tmp/satpaper/satpaper_latest.png"
 # Bail if the satpaper is invalid
 [[ ! -e "$WP_PATH" ]] && exit 1
 
-source "${0:a:h}/lock_wrapper.zsh"
+source "$HOME/scripts/lock_wrapper.zsh"
 
 LOG_ID="BetterlockscreenPostScript"
 
