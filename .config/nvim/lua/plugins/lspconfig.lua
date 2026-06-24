@@ -13,7 +13,17 @@ return {
 
         vim.lsp.enable("rust_analyzer")
 
-        vim.lsp.enable("ts_ls")
+        vim.lsp.config("vtsls", {
+            settings = {
+                vtsls = {
+                    autoUseWorkspaceTsdk = true,
+                },
+                typescript = {
+                    tsdk = "node_modules/typescript/lib",
+                },
+            },
+        })
+        vim.lsp.enable("vtsls")
 
         local clangd_markers = vim.lsp.config["clangd"].root_markers or {}
         vim.lsp.config("clangd", {

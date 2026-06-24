@@ -1,18 +1,16 @@
-local opt = vim.opt
-
-opt.number = true
-opt.backspace = { "indent", "eol", "start" }
-opt.backup = true
-opt.undofile = true
-opt.history = 50
-opt.ruler = true
-opt.showcmd = true
-opt.incsearch = true
-opt.hlsearch = true
-opt.mouse = "a"
-opt.directory = { vim.fn.expand("~/tmp"), "./tmp", "." }
-opt.backupdir = { vim.fn.expand("~/tmp"), "./tmp", "." }
-opt.undodir = { vim.fn.expand("~/tmp"), "./tmp", "." }
+vim.opt.number = true
+vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.backup = true
+vim.opt.undofile = true
+vim.opt.history = 50
+vim.opt.ruler = true
+vim.opt.showcmd = true
+vim.opt.incsearch = true
+vim.opt.hlsearch = true
+vim.opt.mouse = "a"
+vim.opt.directory = { vim.fn.expand("~/tmp"), "./tmp", "." }
+vim.opt.backupdir = { vim.fn.expand("~/tmp"), "./tmp", "." }
+vim.opt.undodir = { vim.fn.expand("~/tmp"), "./tmp", "." }
 
 -- Indentation Settings
 -- NOTE: Soft/Hard wrapping and whether or not to wrap is handled by
