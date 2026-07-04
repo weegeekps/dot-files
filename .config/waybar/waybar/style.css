@@ -1,0 +1,144 @@
+/* waybar style — Nord palette, tight (3px) rounding
+   https://www.nordtheme.com/
+   nord0 #2E3440  nord1 #3B4252  nord2 #434C5E  nord3 #4C566A
+   nord4 #D8DEE9  nord5 #E5E9F0  nord6 #ECEFF4
+   nord7 #8FBCBB  nord8 #88C0D0  nord9 #81A1C1  nord10 #5E81AC
+   nord11 #BF616A nord12 #D08770 nord13 #EBCB8B nord14 #A3BE8C nord15 #B48EAD
+*/
+
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "Sans Serif", "Noto Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #ECEFF4;            /* nord6 */
+}
+
+/* ── Bar ─────────────────────────────────────────────────────────────────── */
+window#waybar {
+  background-color: rgba(46, 52, 64, 0.95);   /* nord0 */
+  border-bottom: 1px solid #4C566A;           /* nord3 */
+}
+
+/* ── Generic module ──────────────────────────────────────────────────────── */
+#workspaces,
+#clock,
+#pulseaudio,
+#tray,
+#custom-powermenu {
+  padding: 0 6px;
+  margin: 0;
+  border-radius: 3px;                          /* tight rounding */
+  background-color: #3B4252;                   /* nord1 */
+}
+
+/* ── Workspaces (edge-to-edge, no radius) ─────────────────────────────── */
+#workspaces {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background-color: #3B4252;                   /* nord1 */
+}
+
+/* ── Arch logo (no box, sits directly on the bar) ──────────────────────────── */
+#custom-arch {
+  padding: 0 8px;
+  margin: 0 2px 0 6px;
+  background-color: transparent;
+  border-radius: 0;
+  font-family: "NotoSansM Nerd Font", "Noto Sans", sans-serif;
+  font-size: 24px;                            /* fill the 30px bar height */
+  color: #1793D1;                            /* official Arch blue */
+}
+
+/* ── Workspaces ──────────────────────────────────────────────────────────── */
+#workspaces button {
+  padding: 0 3px;
+  margin: 0 1px;
+  border-radius: 0;
+  color: #D8DEE9;                              /* nord4 */
+  background-color: transparent;
+}
+#workspaces button:hover {
+  background-color: rgba(94, 129, 172, 0.5);   /* nord10 */
+  color: #ECEFF4;                              /* nord6 */
+}
+#workspaces button.active {
+  background-color: #5E81AC;                   /* nord10 */
+  color: #ECEFF4;                              /* nord6 */
+}
+#workspaces button.urgent {
+  background-color: #BF616A;                   /* nord11 */
+  color: #ECEFF4;                              /* nord6 */
+}
+
+/* ── Taskbar (all open windows) ─────────────────────────────────────────────── */
+#taskbar {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background-color: #3B4252;                   /* nord1 */
+}
+#taskbar button {
+  padding: 0 6px;
+  margin: 0 2px;
+  border-radius: 0;
+  color: #D8DEE9;                              /* nord4 */
+  background-color: transparent;
+}
+#taskbar button:hover {
+  background-color: rgba(94, 129, 172, 0.5);   /* nord10 */
+  color: #ECEFF4;                              /* nord6 */
+}
+#taskbar button.active {
+  background-color: #5E81AC;                   /* nord10 */
+  color: #ECEFF4;                              /* nord6 */
+}
+#taskbar button.maximized {
+  border-bottom: 2px solid #88C0D0;           /* nord8 underline */
+}
+#taskbar button.minimized {
+  color: #4C566A;                             /* dimmed nord3 */
+}
+
+/* ── Clock (center) ──────────────────────────────────────────────────────── */
+#clock {
+  color: #ECEFF4;                              /* nord6 */
+  background-color: #434C5E;                   /* nord2 */
+  font-weight: 600;
+}
+
+/* ── Volume ──────────────────────────────────────────────────────────────── */
+#pulseaudio {
+  color: #88C0D0;                              /* nord8 */
+}
+#pulseaudio.muted {
+  color: #BF616A;                              /* nord11 */
+}
+
+/* ── Tray ────────────────────────────────────────────────────────────────── */
+#tray {
+  padding: 0 6px;
+}
+#tray > .passive {
+  color: #4C566A;                              /* nord3 */
+}
+#tray > .needs-attention {
+  background-color: #BF616A;                   /* nord11 */
+  border-radius: 3px;
+}
+
+/* ── Power menu ──────────────────────────────────────────────────────────── */
+#custom-powermenu {
+  margin-right: 10px;                         /* breathing room from screen edge */
+  color: #BF616A;                              /* nord11 */
+  background-color: #434C5E;                   /* nord2 */
+}
+#custom-powermenu:hover {
+  background-color: #BF616A;                   /* nord11 */
+  color: #ECEFF4;                              /* nord6 */
+}

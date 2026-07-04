@@ -8,7 +8,9 @@ The documentation for my dot-files is split into several files.
 
 ## Documentation
 
- - [EndeavourOS (and i3)](./docs/EndeavourOS.md)
+ - [EndeavourOS (and i3)](./docs/Endeavour_OS_i3.md)
+ - [EndeavourOS (Hyprland)](./docs/Endeavour_OS_Hyprland.md)
+ - [Fedora (Hyprland)](./docs/Fedora_Hyprland.md)
  - [Windows](./docs/windows.md)
  - [Neovim](./docs/neovim.md)
  - [Terminal](./docs/terminal.md)

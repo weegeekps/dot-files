@@ -1,0 +1,102 @@
+// waybar config — Nord theme, mirrors the xfce4-panel layout from i3
+// Left:   arch logo · taskbar (all open windows)
+// Right:  workspaces · pulseaudio · tray · clock · power menu (rofi-power-menu)
+//
+// Run `waybar -l debug` to log to stderr/journal if a module misbehaves.
+
+{
+  "layer": "top",
+  "position": "top",
+  // Pin the bar to the primary (4K) monitor by description (make/model/serial),
+  // not connector name, so it survives connector renaming. Identifier =
+  // description minus " (name)" suffix.
+  //
+  // NOTE: waybar v0.15.0 has NO fail-soft fallback for a non-matching
+  // description — if this matches no connected output, no bar is created.
+  // output-dimensions (resolution-based matching) would be the ideal portable
+  // solution, but that field is master-only, not in v0.15.0. On a machine with
+  // different physical monitors, override this value per-host.
+  "output": "Dell Inc. DELL G3223Q FMBH6P3",
+  "height": 35,
+  "spacing": 4,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+
+  "modules-left":   ["custom/arch", "wlr/taskbar"],
+  "modules-center": [],
+  "modules-right":  ["hyprland/workspaces", "pulseaudio", "tray", "clock", "custom/powermenu"],
+
+  // ── Arch logo (pure display, no click) ────────────────────────────────────
+  // Glyph is chosen at runtime by scripts/distro-logo.sh from /etc/os-release
+  // (Arch family -> Arch triangle, Fedora -> Fedora logo, etc.).
+  "custom/arch": {
+    "exec": "/home/amorris/.config/waybar/scripts/distro-logo.sh",
+    "format": "{}",
+    "tooltip": false
+  },
+
+  // ── Workspaces (i3-style: only show workspaces that exist) ──────────────
+  // No persistent-workspaces — workspaces appear when created/occupied and
+  // vanish when empty, just like i3's virtual desktops.
+  // all-outputs=true shows workspaces from every monitor on this bar.
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{id}"
+  },
+
+  // ── Taskbar (all open windows, icon + title) ──────────────────────────────
+  // Replaces hyprland/window (which showed only the active window's title).
+  // all-outputs=true shows windows from every monitor on this bar (the bar
+  // itself only lives on DP-1). truncate=true ellipsizes long titles.
+  // Click=focus, middle-click=close, right-click=minimize/raise toggle.
+  "wlr/taskbar": {
+    "format": "{icon} {title:.40}",
+    "icon-size": 20,
+    "tooltip-format": "{title}",
+    "all-outputs": true,
+    "truncate": true,
+    "sort-by-app-id": true,
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "on-click-right": "minimize-raise",
+    "rewrite": {},
+    "ignore-list": []
+  },
+
+  // ── Clock ────────────────────────────────────────────────────────────────
+  "clock": {
+    "format": " {:%a %b %e  %H:%M} ",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+
+  // ── Volume ───────────────────────────────────────────────────────────────
+  // Matches the i3 xfce4-pulseaudio-plugin: volume %, scroll to change,
+  // click to toggle mute, middle-click opens the pavucontrol mixer.
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰝟 muted",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "pavucontrol",
+    "on-click-middle": "",
+    "on-scroll-up": "",
+    "on-scroll-down": ""
+  },
+
+  // ── System tray (nm-applet, blueman-applet, fcitx5, pamac-tray) ──────────
+  "tray": {
+    "spacing": 8,
+    "icon-size": 18,
+    "reverse-order": false
+  },
+
+  // ── Power menu → rofi-power-menu ─────────────────────────────────────────
+  "custom/powermenu": {
+    "format": " ⏻ ",
+    "tooltip": false,
+    "on-click": "rofi -show power-menu -modi 'power-menu:rofi-power-menu --choices=lockscreen/logout/suspend/reboot/shutdown'"
+  }
+}

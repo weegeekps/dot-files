@@ -1,0 +1,116 @@
+// which-key-wayland configuration — mirrors hyprland.conf binds (plan §11)
+//
+// Leader key is bound in hyprland.conf:  bind = $mod, slash, exec, which-key-wayland
+//   => press Super+/ to open this panel.
+//
+// Model (same as which-key.nvim): the leader modifier is pressed ONCE to open the
+// panel; the leaf keys below are then pressed WITHOUT re-pressing Super. So a
+// Hyprland bind of `Super+J` (focus left) maps to panel key `j`, and
+// `Super+Shift+J` (move window left) maps to panel key `J` (= Shift+j).
+//
+// Hyprland dispatchers are executed via `sh "hyprctl dispatch ..."`; exec targets
+// via `spawn`/`sh`. These actions run independently of hyprland.conf — the two
+// files are maintained in parallel (plan §11.2 caveat).
+//
+// Built-in navigation (hardcoded, not bindable here): Esc = back/close,
+// Ctrl+u = page up, Ctrl+d = page down.
+
+timeout 2500 // ms before panel auto-hides; 0 to disable
+
+font {
+    size 16.0
+    line-height 20.0
+}
+
+// Nord-derived palette to match the Hyprland active-border theme in hyprland.conf.
+color {
+    fg-key "#D8DEE9"
+    fg-separator "#4C566A"
+    fg-action "#88C0D0"
+    fg-group "#5E81AC"
+    bg "#2E3440"
+}
+
+layout {
+    width 520
+    max-items 12
+    padding 4
+    radius 8
+    anchor 2 // 1:tr | 2:br | 3:bl | 4:tl
+    margin {
+        top 0
+        right 12
+        bottom 12
+        left 0
+    }
+}
+
+bind {
+    // ── Direct actions ────────────────────────────────────────────────
+    Return desc="Terminal" { spawn "alacritty"; }
+    o desc="File manager (Dolphin)" { spawn "dolphin"; }
+    d desc="Launcher (rofi)" { sh "rofi -modi drun,run -show drun"; }
+    e desc="Session / power menu" { sh "rofi -show power-menu -modi 'power-menu:rofi-power-menu --choices=lockscreen/logout/suspend/reboot/shutdown'"; }
+    s desc="Screenshot" { sh "hyprshot -m output"; }
+    q desc="Kill window" { sh "hyprctl dispatch hy3:killactive"; }
+    r desc="Resize mode" { sh "hyprctl dispatch submap resize"; }
+    c desc="Reload Hyprland config" { sh "hyprctl reload"; }
+
+    // ── Workspaces (switch) ──────────────────────────────────────────
+    1 desc="Workspace 1" { sh "hyprctl dispatch workspace 1"; }
+    2 desc="Workspace 2" { sh "hyprctl dispatch workspace 2"; }
+    3 desc="Workspace 3" { sh "hyprctl dispatch workspace 3"; }
+    4 desc="Workspace 4" { sh "hyprctl dispatch workspace 4"; }
+    5 desc="Workspace 5" { sh "hyprctl dispatch workspace 5"; }
+    6 desc="Workspace 6" { sh "hyprctl dispatch workspace 6"; }
+    7 desc="Workspace 7" { sh "hyprctl dispatch workspace 7"; }
+    8 desc="Workspace 8" { sh "hyprctl dispatch workspace 8"; }
+    9 desc="Workspace 9" { sh "hyprctl dispatch workspace 9"; }
+    0 desc="Workspace 10" { sh "hyprctl dispatch workspace 10"; }
+
+    // ── Window group ─────────────────────────────────────────────────
+    w desc="Window" {
+        // Focus movement (vim-style j/k/l/;) — hy3:movefocus for node-tree nav
+        j desc="Focus left" { sh "hyprctl dispatch hy3:movefocus l"; }
+        k desc="Focus down" { sh "hyprctl dispatch hy3:movefocus d"; }
+        l desc="Focus up" { sh "hyprctl dispatch hy3:movefocus u"; }
+        ; desc="Focus right" { sh "hyprctl dispatch hy3:movefocus r"; }
+
+        // Move window (Shift + key) — hy3:movewindow
+        J desc="Move left" { sh "hyprctl dispatch hy3:movewindow l"; }
+        K desc="Move down" { sh "hyprctl dispatch hy3:movewindow d"; }
+        L desc="Move up" { sh "hyprctl dispatch hy3:movewindow u"; }
+        : desc="Move right" { sh "hyprctl dispatch hy3:movewindow r"; }
+
+        // Split / layout — hy3:makegroup / changegroup
+        h desc="Split horizontal" { sh "hyprctl dispatch hy3:makegroup h"; }
+        v desc="Split vertical" { sh "hyprctl dispatch hy3:makegroup v"; }
+        t desc="Toggle tabbed" { sh "hyprctl dispatch hy3:changegroup toggletab"; }
+        x desc="Toggle split orientation" { sh "hyprctl dispatch hy3:changegroup opposite"; }
+        f desc="Fullscreen" { sh "hyprctl dispatch fullscreen 1"; }
+
+        // Focus parent / child — hy3:changefocus
+        a desc="Focus parent" { sh "hyprctl dispatch hy3:changefocus raise"; }
+        g desc="Focus child" { sh "hyprctl dispatch hy3:changefocus lower"; }
+    }
+
+    // ── Move window to workspace ─────────────────────────────────────
+    m desc="Move to workspace" {
+        1 desc="→ ws 1" { sh "hyprctl dispatch movetoworkspace 1"; }
+        2 desc="→ ws 2" { sh "hyprctl dispatch movetoworkspace 2"; }
+        3 desc="→ ws 3" { sh "hyprctl dispatch movetoworkspace 3"; }
+        4 desc="→ ws 4" { sh "hyprctl dispatch movetoworkspace 4"; }
+        5 desc="→ ws 5" { sh "hyprctl dispatch movetoworkspace 5"; }
+        6 desc="→ ws 6" { sh "hyprctl dispatch movetoworkspace 6"; }
+        7 desc="→ ws 7" { sh "hyprctl dispatch movetoworkspace 7"; }
+        8 desc="→ ws 8" { sh "hyprctl dispatch movetoworkspace 8"; }
+        9 desc="→ ws 9" { sh "hyprctl dispatch movetoworkspace 9"; }
+        0 desc="→ ws 10" { sh "hyprctl dispatch movetoworkspace 10"; }
+    }
+
+    // NOTE: hyprland.conf also binds togglefloating ($mod+Shift+space) and
+    // hy3:togglefocuslayer ($mod+space). These use the Space key, which
+    // which-key-wayland does not expose as a bindable printable key, so they
+    // are intentionally omitted here — invoke them directly via the Super
+    // bind instead of through this panel.
+}
