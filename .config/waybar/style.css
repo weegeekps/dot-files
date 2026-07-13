@@ -15,13 +15,13 @@
   font-family: "Sans Serif", "Noto Sans", sans-serif;
   font-size: 15px;
   font-weight: 500;
-  color: #ECEFF4;            /* nord6 */
+  color: #eceff4; /* nord6 */
 }
 
 /* ── Bar ─────────────────────────────────────────────────────────────────── */
 window#waybar {
-  background-color: rgba(46, 52, 64, 0.95);   /* nord0 */
-  border-bottom: 1px solid #4C566A;           /* nord3 */
+  background-color: rgba(46, 52, 64, 0.95); /* nord0 */
+  border-bottom: 1px solid #4c566a; /* nord3 */
 }
 
 /* ── Generic module ──────────────────────────────────────────────────────── */
@@ -32,8 +32,8 @@ window#waybar {
 #custom-powermenu {
   padding: 0 6px;
   margin: 0;
-  border-radius: 3px;                          /* tight rounding */
-  background-color: #3B4252;                   /* nord1 */
+  border-radius: 3px; /* tight rounding */
+  background-color: #3b4252; /* nord1 */
 }
 
 /* ── Workspaces (edge-to-edge, no radius) ─────────────────────────────── */
@@ -41,7 +41,7 @@ window#waybar {
   padding: 0;
   margin: 0;
   border-radius: 0;
-  background-color: #3B4252;                   /* nord1 */
+  background-color: #3b4252; /* nord1 */
 }
 
 /* ── Arch logo (no box, sits directly on the bar) ──────────────────────────── */
@@ -51,8 +51,18 @@ window#waybar {
   background-color: transparent;
   border-radius: 0;
   font-family: "NotoSansM Nerd Font", "Noto Sans", sans-serif;
-  font-size: 24px;                            /* fill the 30px bar height */
-  color: #1793D1;                            /* official Arch blue */
+  font-size: 24px; /* fill the 30px bar height */
+  color: #1793d1; /* official Arch blue */
+}
+
+#system {
+  padding: 0 6px;
+  margin: 0;
+  background-color: transparent;
+}
+
+#custom-load {
+  padding-right: 6px;
 }
 
 /* ── Workspaces ──────────────────────────────────────────────────────────── */
@@ -60,20 +70,20 @@ window#waybar {
   padding: 0 3px;
   margin: 0 1px;
   border-radius: 0;
-  color: #D8DEE9;                              /* nord4 */
+  color: #d8dee9; /* nord4 */
   background-color: transparent;
 }
 #workspaces button:hover {
-  background-color: rgba(94, 129, 172, 0.5);   /* nord10 */
-  color: #ECEFF4;                              /* nord6 */
+  background-color: rgba(94, 129, 172, 0.5); /* nord10 */
+  color: #eceff4; /* nord6 */
 }
 #workspaces button.active {
-  background-color: #5E81AC;                   /* nord10 */
-  color: #ECEFF4;                              /* nord6 */
+  background-color: #5e81ac; /* nord10 */
+  color: #eceff4; /* nord6 */
 }
 #workspaces button.urgent {
-  background-color: #BF616A;                   /* nord11 */
-  color: #ECEFF4;                              /* nord6 */
+  background-color: #bf616a; /* nord11 */
+  color: #eceff4; /* nord6 */
 }
 
 /* ── Taskbar (all open windows) ─────────────────────────────────────────────── */
@@ -81,43 +91,43 @@ window#waybar {
   padding: 0;
   margin: 0;
   border-radius: 0;
-  background-color: #3B4252;                   /* nord1 */
+  background-color: #3b4252; /* nord1 */
 }
 #taskbar button {
   padding: 0 6px;
   margin: 0 2px;
   border-radius: 0;
-  color: #D8DEE9;                              /* nord4 */
+  color: #d8dee9; /* nord4 */
   background-color: transparent;
 }
 #taskbar button:hover {
-  background-color: rgba(94, 129, 172, 0.5);   /* nord10 */
-  color: #ECEFF4;                              /* nord6 */
+  background-color: rgba(94, 129, 172, 0.5); /* nord10 */
+  color: #eceff4; /* nord6 */
 }
 #taskbar button.active {
-  background-color: #5E81AC;                   /* nord10 */
-  color: #ECEFF4;                              /* nord6 */
+  background-color: #5e81ac; /* nord10 */
+  color: #eceff4; /* nord6 */
 }
 #taskbar button.maximized {
-  border-bottom: 2px solid #88C0D0;           /* nord8 underline */
+  border-bottom: 2px solid #88c0d0; /* nord8 underline */
 }
 #taskbar button.minimized {
-  color: #4C566A;                             /* dimmed nord3 */
+  color: #4c566a; /* dimmed nord3 */
 }
 
 /* ── Clock (center) ──────────────────────────────────────────────────────── */
 #clock {
-  color: #ECEFF4;                              /* nord6 */
-  background-color: #434C5E;                   /* nord2 */
+  color: #eceff4; /* nord6 */
+  background-color: #434c5e; /* nord2 */
   font-weight: 600;
 }
 
 /* ── Volume ──────────────────────────────────────────────────────────────── */
 #pulseaudio {
-  color: #88C0D0;                              /* nord8 */
+  color: #88c0d0; /* nord8 */
 }
 #pulseaudio.muted {
-  color: #BF616A;                              /* nord11 */
+  color: #bf616a; /* nord11 */
 }
 
 /* ── Tray ────────────────────────────────────────────────────────────────── */
@@ -125,20 +135,20 @@ window#waybar {
   padding: 0 6px;
 }
 #tray > .passive {
-  color: #4C566A;                              /* nord3 */
+  color: #4c566a; /* nord3 */
 }
 #tray > .needs-attention {
-  background-color: #BF616A;                   /* nord11 */
+  background-color: #bf616a; /* nord11 */
   border-radius: 3px;
 }
 
 /* ── Power menu ──────────────────────────────────────────────────────────── */
 #custom-powermenu {
-  margin-right: 10px;                         /* breathing room from screen edge */
-  color: #BF616A;                              /* nord11 */
-  background-color: #434C5E;                   /* nord2 */
+  margin-right: 10px; /* breathing room from screen edge */
+  color: #bf616a; /* nord11 */
+  background-color: #434c5e; /* nord2 */
 }
 #custom-powermenu:hover {
-  background-color: #BF616A;                   /* nord11 */
-  color: #ECEFF4;                              /* nord6 */
+  background-color: #bf616a; /* nord11 */
+  color: #eceff4; /* nord6 */
 }

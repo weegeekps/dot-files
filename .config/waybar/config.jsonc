@@ -23,7 +23,7 @@
   "margin-left": 0,
   "margin-right": 0,
 
-  "modules-left":   ["custom/arch", "wlr/taskbar"],
+  "modules-left":   ["custom/arch", "group/system", "wlr/taskbar"],
   "modules-center": [],
   "modules-right":  ["hyprland/workspaces", "pulseaudio", "tray", "clock", "custom/powermenu"],
 
@@ -34,6 +34,26 @@
     "exec": "/home/amorris/.config/waybar/scripts/distro-logo.sh",
     "format": "{}",
     "tooltip": false
+  },
+
+  // -- System Load & RAM --
+  "group/system": {
+      "orientation": "inherit",
+      "modules": [
+          "custom/load",
+          "memory"
+      ]
+  },
+
+  "custom/load": {
+    "exec": "awk '{print $1, $2, $3}' /proc/loadavg",
+    "interval": 5,
+    "tooltip": false
+  },
+
+  "memory": {
+      "format": "{used:0.1f} GiB",
+      "tooltip-format": "{avail:0.1f} GiB available | {swapUsed:0.1f} GiB swap used"
   },
 
   // ── Workspaces (i3-style: only show workspaces that exist) ──────────────
