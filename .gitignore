@@ -1,1 +1,4 @@
 .DS_Store
+
+# System level overrides for hyprland settings.
+.config/hypr/hyprland-overrides.lua

@@ -13,7 +13,9 @@ hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("alacritty"))
 hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd("dolphin"))
 
 -- Screenshot
-hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m output"))
+hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("hyprshot -m window"))
+hl.bind(mainMod .. " + SHIFT + Print", hl.dsp.exec_cmd("hyprshot -m output"))
 
 -- Kill focused window
 hl.bind(mainMod .. " + SHIFT + Q", hy3.kill_active())

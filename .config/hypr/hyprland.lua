@@ -140,6 +140,8 @@ end)
 -- session_started gate skips the startup monitor burst. SUPER+B (keybindings.lua)
 -- is the manual fallback.
 hl.on("monitor.added", function(monitor)
-    if not session_started or monitor.name == "FALLBACK" then return end
+    if not session_started or monitor.name == "FALLBACK" then
+        return
+    end
     hl.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/kvm-recover.sh")
 end)
