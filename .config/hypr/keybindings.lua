@@ -72,6 +72,12 @@ end
 -- Reload config
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd("hyprctl reload"))
 
+-- Re-handshake displays after a KVM switch (dpms off→on cycle). Hyprland keeps
+-- the output "active" through a KVM switch, so the link never re-trains and the
+-- screens stay black until a DPMS cycle. Always-works manual fallback; the
+-- kvm-recover.service automates it when the kernel emits a DRM hotplug event.
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(HOME_DIR .. "/.config/hypr/scripts/kvm-recover.sh"))
+
 -- Power/exit menu
 hl.bind(
     mainMod .. " + SHIFT + E",

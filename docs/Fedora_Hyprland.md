@@ -107,7 +107,9 @@ hyprctl hyprpaper wallpaper ',/home/USER/tmp/satpaper/satpaper_latest.png,cover'
 
 Copy over the Hyprland configuration from `dot-files`:
 
- - `.config/hypr/hyprland.lua` — compositor config. Loads hy3, sets the Nord theme, and defines all keybindings.
+ - `.config/hypr/hyprland.lua` — compositor config. Loads hy3, sets the Nord theme, wires up monitors/env/animations/autostart, and loads keybindings + window rules from sibling files rather than defining them inline.
+ - `.config/hypr/keybindings.lua` — all keybinds (vim-style focus, hy3 dispatchers, resize submap, media keys). Loaded by `hyprland.lua` via `loadfile`.
+ - `.config/hypr/window_rules/` — window rules directory. `hyprland.lua` globs `*.lua` from here in sorted order; prefix files with `NN_` to control precedence (rules evaluate top-to-bottom, last match wins).
  - `.config/hypr/hypridle.conf` — idle/lock daemon. Locks after 5 min, blanks displays after 10 min, locks before suspend.
  - `.config/hypr/hyprlock.conf` — Wayland lock screen, Nord-themed, satpaper background blurred and dimmed.
  - `.config/hypr/hyprpaper.conf` — wallpaper daemon. Displays `~/tmp/satpaper/satpaper_latest.png` on all outputs. (hyprpaper 0.8+ uses a `wallpaper { }` block; the old `preload =`/`wallpaper =` syntax was removed.)
