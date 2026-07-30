@@ -126,6 +126,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpaper") -- wallpaper
     hl.exec_cmd("which-key-wayland") -- keybind cheatsheet
     hl.exec_cmd("sh -c 'sleep 2; hypridle'") -- idle/lock daemon
+    hl.exec_cmd("keepassxc --keyfile /home/amorris/.keys/bigfat_secrets.keyx /home/amorris/.keys/bigfat_secrets.kdbx")
 end)
 
 -- ─────────────────────────────────────────────────────────────────────────────
@@ -145,3 +146,42 @@ hl.on("monitor.added", function(monitor)
     end
     hl.exec_cmd(os.getenv("HOME") .. "/.config/hypr/scripts/kvm-recover.sh")
 end)
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- Host & Distro-specific configurations
+-- ─────────────────────────────────────────────────────────────────────────────
+-- This provides a mechanism for allowing system-specific configurations based
+-- on hostname or distribution.
+local function get_hostname()
+    local f = io.popen("hostname")
+    if not f then
+        return "unknown"
+    end
+    local hostname = f:read("*l")
+    f:close()
+    return hostname or "unknown"
+end
+
+local function get_distro()
+    local f = io.open("/etc/os-release", "r")
+    if not f then
+        return "unknown"
+    end
+    for line in f:lines() do
+        local id = line:match('^ID="?([^"\n]*)"?$')
+        if id then
+            f:close()
+            return id
+        end
+    end
+    f:close()
+    return "unknown"
+end
+
+-- distro-specific config
+local distro_file = os.getenv("HOME") .. "/.config/hypr/distro/" .. get_distro() .. ".lua"
+pcall(dofile, distro_file)
+
+-- host-specific config
+local host_file = os.getenv("HOME") .. "/.config/hypr/hosts/" .. get_hostname() .. ".lua"
+pcall(dofile, host_file)

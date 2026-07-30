@@ -12,16 +12,6 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name = "fix-xwayland-ghost-windows",
-    match = {
-        xwayland = true,
-        class = "^$",
-        title = "^$",
-    },
-    no_focus = true,
-})
-
-hl.window_rule({
     name = "floating-never-start-maximized",
     match = { float = true },
     maximize = false,
