@@ -1,14 +1,18 @@
 return {
     "neovim/nvim-lspconfig",
     lazy = false,
+    dependencies = { "saghen/blink.cmp" },
     config = function()
         local lspconfig = require("lspconfig")
 
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities.textDocument.foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true,
-        }
+        local capabilities = require("blink.cmp").get_lsp_capabilities({
+            textDocument = {
+                foldingRange = {
+                    dynamicRegistration = false,
+                    lineFoldingOnly = true,
+                },
+            },
+        })
         vim.lsp.config("*", { capabilities = capabilities })
 
         vim.lsp.enable("rust_analyzer")
@@ -27,6 +31,19 @@ return {
 
         local clangd_markers = vim.lsp.config["clangd"].root_markers or {}
         vim.lsp.config("clangd", {
+            cmd = {
+                "clangd",
+                "--background-index",
+                "--clang-tidy",
+                "--completion-style=detailed",
+                "--function-arg-placeholders",
+                "--header-insertion=iwyu",
+                "--pch-storage=memory",
+                "-j=8",
+            },
+            init_options = {
+                fallbackFlags = { "-std=c++20" },
+            },
             root_markers = {
                 vim.deepcopy(clangd_markers),
                 { "CMakeLists.txt" },

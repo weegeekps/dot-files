@@ -60,6 +60,10 @@ hl.bind(mainMod .. " + T", hy3.change_group("toggletab"))
 hl.bind(mainMod .. " + SHIFT + space", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + space", hy3.toggle_focus_layer())
 
+-- Floating window mouse control
+hl.bind(mainMod .. " + SHIFT + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mainMod .. " + SHIFT + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
 -- Focus parent/child
 hl.bind(mainMod .. " + A", hy3.change_focus("raise"))
 hl.bind(mainMod .. " + D", hy3.change_focus("lower"))
