@@ -26,6 +26,12 @@ return {
                 lua = { "stylua" },
                 d2 = { "d2" },
             },
+            formatters = {
+                clang_format = {
+                    command = "clang-format-18",
+                    prepend_args = { "--style=file", "--fallback-style=LLVM" },
+                },
+            },
             format_on_save = {
                 timeout_ms = 500,
                 lsp_fallback = true,

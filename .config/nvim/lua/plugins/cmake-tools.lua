@@ -31,6 +31,18 @@ return {
         { "<Leader>msP", "<cmd>CMakeSelectBuildPreset<CR>", desc = "CMake Select Build Preset" },
         { "<Leader>mst", "<cmd>CMakeSelectBuildType<CR>", desc = "CMake Select Build Type" },
         { "<Leader>m?", "<cmd>CMakeSettings<CR>", desc = "CMake Settings" },
+        {
+            "<Leader>mo",
+            function()
+                local qf = vim.fn.getqflist({ winid = 0 })
+                if qf.winid ~= 0 then
+                    vim.cmd("cclose")
+                else
+                    vim.cmd("botright copen 10")
+                end
+            end,
+            desc = "Toggle build output",
+        },
     },
     config = function()
         require("cmake-tools").setup({

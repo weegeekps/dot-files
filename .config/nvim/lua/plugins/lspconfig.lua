@@ -45,20 +45,33 @@ return {
                 fallbackFlags = { "-std=c++20" },
             },
             root_markers = {
-                vim.deepcopy(clangd_markers),
-                { "CMakeLists.txt" },
+                ".clang-tidy",
+                ".clangd",
+                ".clang-format",
+                "compile_commands.json",
+                "compile_flags.txt",
+                "configure.ac",
+                "CMakeLists.txt",
+                ".git",
             },
         })
         vim.lsp.enable("clangd")
 
-        local opts = { noremap = true, silent = true }
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
+            desc = "Go to Definition",
+            noremap = true,
+            silent = true,
+        })
         vim.keymap.set(
             "n",
             "<Leader><Space>",
             vim.lsp.buf.code_action,
             { desc = "LSP Code Action", noremap = true, silent = true }
         )
-        vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, {
+            desc = "Rename symbol",
+            noremap = true,
+            silent = true,
+        })
     end,
 }
