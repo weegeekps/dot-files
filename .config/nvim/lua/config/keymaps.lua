@@ -34,6 +34,14 @@ keymap("n", "ff", function()
     require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Force rustfmt", noremap = true, silent = true })
 
+-- C++ toggle between Header and Source file
+keymap(
+    "n",
+    "<Leader>dh",
+    ":LspClangdSwitchSourceHeader<CR>",
+    { desc = "Switch to Header/Source file", noremap = true, silent = true }
+)
+
 -- Neovide Specific
 if vim.g.neovide then
     -- System Copy, Cut, Paste

@@ -82,7 +82,7 @@ return {
         require("neotest").setup({
             adapters = {
                 require("neotest-ctest").setup({
-                    dap_adapter = "gdp",
+                    dap_adapter = "gdb",
 
                     -- Recognize common test filenames and test directories.
                     is_test_file = function(path)

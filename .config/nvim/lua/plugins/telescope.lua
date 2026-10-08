@@ -18,7 +18,7 @@ return {
         { "<Leader>fu", ":Telescope lsp_implementations<CR>", desc = "󰭎 LSP Implementations" },
         { "<Leader>fi", ":Telescope lsp_incoming_calls<CR>", desc = "󰭎 LSP Incoming Calls" },
         { "<Leader>fo", ":Telescope lsp_outgoing_calls<CR>", desc = "󰭎 LSP Outgoing Calls" },
-        { "<Leader>fss", ":Telescope lsp_document_symbols<CR>", desc = "󰭎 LSP Document Symbols" },
+        { "<Leader>fsd", ":Telescope lsp_document_symbols<CR>", desc = "󰭎 LSP Document Symbols" },
         { "<Leader>fsw", ":Telescope lsp_workspace_symbols<CR>", desc = "󰭎 LSP Workspace Symbols" },
         { "<Leader>fd", ":Telescope diagnostics<CR>", desc = "󰭎 Diagnostics" },
         { "<Leader>b", ":Telescope buffers<CR>", desc = "󰭎 Buffers" },
@@ -53,6 +53,11 @@ return {
             extensions = {
                 ["ui-select"] = {
                     require("telescope.themes").get_dropdown(),
+                },
+                aerial = {
+                    show_columns = "both",
+                    col1_width = 6,
+                    col2_width = 30,
                 },
             },
         })
