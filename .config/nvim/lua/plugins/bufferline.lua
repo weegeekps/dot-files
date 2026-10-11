@@ -23,6 +23,12 @@ return {
                 },
             },
             persist_buffer_sort = true,
+            close_command = function(bufnr)
+                require("mini.bufremove").delete(bufnr, false)
+            end,
+            right_mouse_command = function(bufnr)
+                require("mini.bufremove").delete(bufnr, false)
+            end,
         },
     },
 }

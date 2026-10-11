@@ -2,6 +2,7 @@ return {
     "Civitasv/cmake-tools.nvim",
     dependencies = {
         "nvim-lua/plenary.nvim",
+        "stevearc/overseer.nvim",
     },
     ft = { "c", "cpp", "cmake" },
     cmd = {
@@ -31,18 +32,6 @@ return {
         { "<Leader>msP", "<cmd>CMakeSelectBuildPreset<CR>", desc = "CMake Select Build Preset" },
         { "<Leader>mst", "<cmd>CMakeSelectBuildType<CR>", desc = "CMake Select Build Type" },
         { "<Leader>m?", "<cmd>CMakeSettings<CR>", desc = "CMake Settings" },
-        {
-            "<Leader>mo",
-            function()
-                local qf = vim.fn.getqflist({ winid = 0 })
-                if qf.winid ~= 0 then
-                    vim.cmd("cclose")
-                else
-                    vim.cmd("botright copen 10")
-                end
-            end,
-            desc = "Toggle build output",
-        },
     },
     config = function()
         require("cmake-tools").setup({
@@ -66,26 +55,42 @@ return {
                 stopAtBeginningOfMainSubprogram = false,
             },
 
-            -- Build output into the quickfix list, so <Leader>dQ (Trouble qflist)
-            -- shows compiler errors.
+            -- -- Build output into the quickfix list, so <Leader>dQ (Trouble qflist)
+            -- -- shows compiler errors.
+            -- cmake_executor = {
+            --     name = "quickfix",
+            --     opts = {
+            --         show = "only_on_error",
+            --         position = "belowright",
+            --         size = 10,
+            --         auto_close_when_success = true,
+            --     },
+            -- },
+
+            -- -- Terminal runner
+            -- cmake_runner = {
+            --     name = "terminal",
+            --     opts = {
+            --         prefix_name = "[CMakeTools]: ",
+            --         split_direction = "horizontal",
+            --         split_size = 11,
+            --         focus = false,
+            --     },
+            -- },
+
+            -- Overseer Runner & Executor
             cmake_executor = {
-                name = "quickfix",
+                name = "overseer",
                 opts = {
-                    show = "only_on_error",
-                    position = "belowright",
-                    size = 10,
-                    auto_close_when_success = true,
+                    on_new_task = function()
+                        require("overseer").open({ enter = false })
+                    end,
                 },
             },
 
             cmake_runner = {
-                name = "terminal",
-                opts = {
-                    prefix_name = "[CMakeTools]: ",
-                    split_direction = "horizontal",
-                    split_size = 11,
-                    focus = false,
-                },
+                name = "overseer",
+                opts = {},
             },
         })
     end,
