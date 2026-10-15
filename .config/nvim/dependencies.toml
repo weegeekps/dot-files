@@ -1,0 +1,227 @@
+# This is read by `./install-dependencies.py` to install the dependencies for the platform.
+#
+# An easy way to populate a new dependency here is to just have an agent do it and tell them to use
+# pkgs.org to get the package names.
+
+###################################
+# Settings
+#
+# These have a corresponding enum in ./install-dependencies.py
+###################################
+
+[platform]
+name = "arch"
+command = "sudo pacman -Sy {}"
+
+[platform]
+name = "cargo"
+command = "cargo install {}"
+
+[platform]
+name = "fedora"
+command = "sudo dnf install -y {}"
+
+[platform]
+name = "macos"
+command = "sudo port -N install {}"
+
+# NPM assumes nvm is installed.
+[platform]
+name = "npm"
+command = "npm --no-audit --no-fund -g {}"
+
+# pipx assumes python & pipx are installed.
+[platform]
+name = "pipx"
+command = "pipx install {}"
+
+[platform]
+name = "rhel"
+pre-command = "sudo dnf config-manager --set-enabled crb"
+command = "sudo dnf install -y {}"
+
+[platform]
+name = "ubuntu"
+command = "sudo DEBIAN_FRONTEND=noninteractive apt install -y -o Dpkg::Options::='--force-confdef' {}"
+
+[repository]
+name = "terra"
+used-by = ["fedora", "rhel"]
+install-command = "sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release"
+
+###################################
+# Core Dependencies
+#
+# These are always installed.
+###################################
+
+[dependency]
+name = "ripgrep"
+feature = "core"
+
+[[dependency.target]]
+platform = ["arch", "fedora", "rhel", "ubuntu"]
+package = "ripgrep"
+
+[dependency]
+name = "Basic Build Tools"
+feature = "core"
+
+[[dependency.target]]
+platform = ["arch"]
+package = "base-devel"
+
+[[dependency.target]]
+platform = ["fedora", "rhel"]
+package = "automake gcc gcc-c++"
+
+[[dependency.target]]
+platform = ["ubuntu"]
+package = "build-essential"
+
+[dependency]
+name = "Nerd Fonts"
+feature = "core"
+
+[[dependency.target]]
+platform = ["arch"]
+package = "ttf-nerd-fonts-symbols"
+
+[[dependency.target]]
+platform = ["fedora", "rhel"]
+repository = "terra"
+package = "nerd-fonts"
+
+[dependency]
+name = "Fira Code"
+feature = "core"
+
+[[dependency.target]]
+platform = ["arch"]
+package = "ttf-fira-code"
+
+[[dependency.target]]
+platform = ["fedora", "rhel"]
+package = "fira-code-fonts"
+
+###################################
+# Build
+###################################
+
+[dependency]
+name = "CMake & CTest"
+feature = "build"
+
+[[dependency.target]]
+platform = ["arch", "fedora", "rhel", "ubuntu"]
+package = "cmake"
+
+[dependency]
+name = "gdb"
+feature = "build"
+
+[[dependency.target]]
+platform = ["arch", "fedora", "rhel", "ubuntu"]
+package = "gdb"
+
+[dependency]
+name = "sqlite"
+feature = "build"
+
+[[dependency.target]]
+platform = ["arch", "fedora", "rhel"]
+package = "sqlite"
+
+[[dependency.target]]
+platform = ["ubuntu"]
+package = "sqlite3"
+
+###################################
+# Language Servers
+###################################
+
+[dependency]
+name = "clangd"
+feature = "lsp"
+
+[[dependency.target]]
+platform = ["arch"]
+package = "clang"
+
+[[dependency.target]]
+platform = ["fedora", "rhel"]
+package = "clang clang-devel clang-tools-extra"
+
+[dependency]
+name = "rust-analyzer"
+feature = "lsp"
+
+[[dependency.target]]
+platform = ["rustup"]
+package = "rust-analyzer rust-src"
+
+[dependency]
+name = "vtsls"
+feature = "lsp"
+
+[[dependency.target]]
+platform = ["npm"]
+package = "@vtsls/language-server"
+
+# The project level TypeScript SDK is used.
+
+###################################
+# Formatting
+###################################
+
+# clang-format is installed with clang.
+
+[dependency]
+name = "black"
+feature = "format"
+
+[[dependency.target]]
+platform = ["pipx"]
+package = "black"
+
+[dependency]
+name = "stylua"
+feature = "format"
+
+[[dependency.target]]
+platform = ["cargo"]
+package = "stylua"
+
+[dependency]
+name = "d2"
+feature = "format"
+
+[[dependency.target]]
+platform = ["arch", "fedora"]
+package = "d2"
+
+###################################
+# Linters
+###################################
+
+[dependency]
+name = "clang-tidy"
+feature = "lint"
+
+# Installed on RHEL & Fedora platforms via clang tools.
+
+[[dependency.target]]
+platform = ["arch"]
+package = "clangd-tidy"
+
+[[dependency.target]]
+platform = ["ubuntu"]
+package = "clang-tidy"
+
+[dependency]
+name = "flake8"
+feature = "lint"
+
+[[dependency.target]]
+platform = ["pipx"]
+package = "flake8"
